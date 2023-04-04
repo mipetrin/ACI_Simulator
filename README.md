@@ -2,6 +2,12 @@
 
 Once an ACI Simulator is deployed, upon bootup, there is a start up script that needs to be completed every time the VM is started/rebooted. For NetDevOps purposes, I thought it would be better if I could automate this bring-up process, which is what is achieved via this Ansible playbook.
 
+# Latest as of April 2023:
+   - Made changes to support newer APIC startup script introduced in ACI 5.x and newer
+   - Tested and validated that this works against both ACI 5.2 and ACI 6.0 simulator versions
+   - Added demo video show casing the Ansible playbook in action.
+      - NOTE: The video lasts for approx. 3 minutes whereas real-time the process takes approx. 10-15 minutes.
+
 # Assumptions
    - You already have downloaded the Cisco ACI Simulator OVA from Cisco.com
    - You have already deployed the OVA to your vCenter environment
