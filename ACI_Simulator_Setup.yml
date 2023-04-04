@@ -245,26 +245,48 @@
       tags:
         - startup_script
 
-    - name: Wait for APIC Startup Script
+    - name: Wait for ACI Sim VM to Boot
       pause:
-        seconds: 40
+        seconds: "{{ wait_time_script }}"
       when:
         - newer_apic_sim
       tags:
         - startup_script
+
+    #- name: Configure ACI Sim via VM console - APIC Startup Script
+    #  vmware_guest_sendkey:
+    #    <<: *vmware_info
+    #    moid: "{{ vm_info.instance.moid }}"
+    #    keys_send:
+    #      - ENTER #ACI Fabric Name - input order based of ACI 4.2
+    #      - ENTER #Fabric ID
+    #      - ENTER #Active Controllers
+    #      - ENTER #POD ID
+    #      - ENTER #Standby Controller
+    #      - ENTER #Controller ID
+    #      - ENTER #Controller Name
+    #      - ENTER #TEP Address Pool
+    #      - ENTER #Infra VLAN ID
+    #      - ENTER #BD Multicast GIPO
+    #      - ENTER #IPv6 OOB Mgmt
+    #    sleep_time: 1
+    #  no_log: no
+    #  tags:
+    #    - startup_script
 
     - name: Configure ACI Sim via VM console - APIC Startup Script
       vmware_guest_sendkey:
         <<: *vmware_info
         moid: "{{ vm_info.instance.moid }}"
         keys_send:
-          - ENTER #ACI Fabric Name
+          - ENTER #ACI Fabric Name - input order based off ACI 5.2 and 6.0(2)
           - ENTER #Fabric ID
           - ENTER #Active Controllers
-          - ENTER #POD ID
           - ENTER #Standby Controller
           - ENTER #Controller ID
-          - ENTER #Controller Name
+          - ENTER #APIC over L3 / Standalone APIC Cluster
+          - ENTER #POD ID
+          - ENTER #Controller Name          
           - ENTER #TEP Address Pool
           - ENTER #Infra VLAN ID
           - ENTER #BD Multicast GIPO
