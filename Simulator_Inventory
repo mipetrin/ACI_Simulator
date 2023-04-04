@@ -2,17 +2,18 @@
 all:
     hosts:
         vcenter:
-            vcenter_host: "vcenter-hx-dc.mike.local"
+            vcenter_host: "vcenter-hx-dc.nsd5.ciscolabs.com"
             vcenter_password: "admincisco"
             vcenter_username: "administrator@vsphere.local"
             validate_certs: no
     vars:
         vm_dc: "HX-DC"                  # Match the Data Center name from your vCenter
-        vm_name: "mike-acisim-4.2-3j"   # Exact name of the ACI Sim you've deployed from the OVA in vCenter
-        newer_apic_sim: no              # Set to yes if ACI Sim is 5.1(3) or newer, otherwise set to no
+        vm_name: "Mike-acisim-6.0-2h"   # Exact name of the ACI Sim you've deployed from the OVA in vCenter
+        newer_apic_sim: yes             # Set to yes if ACI Sim is 5.1(3) or newer, otherwise set to no
         apic_large_topology: "y"        # y or n (must be lowercase), Choice available as of 5.1(3) ACI Simulator
-        wait_time: 120                  # Amount in seconds to wait for ACI Sim to boot before expecting Startup script
-        apic_host: "10.66.110.115"      # IP Address you want to assign the ACI Sim
+        wait_time: 165                  # Amount in seconds to wait for ACI Sim to boot before expecting Startup script. Set for ACI 6.0. Could be shortened for ACI 5.2
+        wait_time_script: 70            # Amount in seconds to wait for the ACI Start Up script to be presented after topology type selection
+        apic_host: "10.66.110.110"      # IP Address you want to assign the ACI Sim
         apic_mask: "/24"                # Subnet Mask for the ACI Sim
         apic_gateway: "10.66.110.1"     # Default Gateway for ACI Sim
         apic_user: admin                # Username for the ACI Sim
